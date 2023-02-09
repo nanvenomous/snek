@@ -9,7 +9,6 @@ import (
 
 var (
 	completion string
-	version    bool
 	shells     = []string{"bash", "zsh", "fish", "powershell"}
 )
 
@@ -37,10 +36,6 @@ func InitRoot(rtCmd *cobra.Command, cfgFile string, cfgFileName string) {
 	rtCmd.SilenceErrors = true
 	rtCmd.CompletionOptions.DisableDefaultCmd = true
 
-	rtCmd.Flags().BoolVarP(
-		&version, "version", "v", false,
-		"show the version of this binary",
-	)
 	completionFlag := "completion"
 	rtCmd.Flags().StringVar(&completion, completionFlag, "", "generate shell completion")
 	rtCmd.RegisterFlagCompletionFunc(completionFlag, func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
